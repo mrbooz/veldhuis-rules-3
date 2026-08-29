@@ -59,15 +59,18 @@ const RULES: Rule[] = [
 
 export function evaluate(shift: Shift, contract: Contract): Result {
   let total = 0;
+  const applied: string[] = [];
 
   for (const rule of RULES) {
     if (!rule.matches(shift, contract)) continue;
     total += rule.amount(shift, contract);
+    applied.push(rule.id);
   }
 
-  return { total };
+  return { total, applied };
 }
 
 export interface Result {
   total: number;
+  applied: string[];
 }
