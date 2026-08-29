@@ -1,4 +1,4 @@
-# ADR-0007: which day owns a shift that crosses midnight
+# ADR-0007: amended after review
 
 ## Context
 
@@ -23,3 +23,7 @@ Not because A is cheaper — it is, and stability is a real argument, which is w
 ## What this makes harder (CONS-NIGHT-2130)
 
 CONS-NIGHT-2130: any night comparison across the 2021–2026 boundary is now grouped two different ways, so nine years of totals cannot be compared to new ones without re-running history through the divider — trend reports, year-on-year staffing views and any audit spanning the boundary get harder, permanently. It also makes the 21:30 premium boundary a per-day question: a shift's premium hours now round within each day, so some payslips change by design, and every such change has to be defended from the contract clause rather than from precedent — CONS-NIGHT-2130 is the reference to cite when one of them is questioned.
+
+## Amendment
+
+Amendment, answering Wim's review: CONS-NIGHT-2130 names the cost; this names who pays it. Re-running history through the divider is NOT in scope for VEL-6122/6123 — those move the live exports and must not also carry a nine-year backfill. It is a separate ticket, VEL-6124, owned by the rules-engine owner (currently Rae), filed with this amendment: re-run 2021–2026 night totals through attributionPortions() into a parallel view, so boundary-spanning audits compare like with like; the original single-day totals are never overwritten — the month closes hard, and what was exported is what was paid. Until VEL-6124 lands, any boundary-spanning comparison cites CONS-NIGHT-2130 and says which grouping it used.
