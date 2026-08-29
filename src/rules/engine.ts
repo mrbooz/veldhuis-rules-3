@@ -57,7 +57,16 @@ const RULES: Rule[] = [
   },
 ];
 
-export function evaluate(shift: Shift, contract: Contract): Result {
+// NOTE: `applied` is not part of the serialized Result shape that
+// Pay-Ready fixtures compare against — it travels alongside the total on
+// this return value but is not declared on the Result interface below, so
+// it does not appear when a Result is serialized whole. Callers that want
+// the ordered list of applied rule ids should destructure it here rather
+// than expect it to survive a round-trip through Result.
+export function evaluate(
+  shift: Shift,
+  contract: Contract
+): Result & { applied: string[] } {
   let total = 0;
   const applied: string[] = [];
 
@@ -72,5 +81,4 @@ export function evaluate(shift: Shift, contract: Contract): Result {
 
 export interface Result {
   total: number;
-  applied: string[];
 }
