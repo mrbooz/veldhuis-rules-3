@@ -23,6 +23,8 @@ import { dayKeyOf } from "../lib/shiftWindow";
  * the hours worked inside it (see src/contracts/aldervale.ts).
  */
 export function attributionDay(shift: Shift, contract: Contract): DayKey {
-  return dayKeyOf(shift.start);
+  // SUP-2291: nights were counted against the day the shift starts, which
+  // put 14 people on Beeches on the Tuesday and 2 on the Wednesday.
+  return dayKeyOf(shift.end);
 }
 
